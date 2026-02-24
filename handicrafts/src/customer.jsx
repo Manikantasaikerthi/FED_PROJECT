@@ -279,7 +279,9 @@ function Customer() {
                     <a href="#cart" onClick={scrollToCart}>Cart ({cart.length})</a>
                     <button 
                         onClick={() => setShowCart(!showCart)}
-                        style={{float: 'right', marginLeft: '20px', padding: '8px 16px', color: 'black', border: 'none', borderRadius: '5px', cursor: 'pointer'}}
+                        style={{float: 'right', marginLeft: '20px', padding: '10px 20px', background: 'linear-gradient(135deg, #f39c12 0%, #e67e22 100%)', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 10px rgba(243, 156, 18, 0.3)'}}
+                        onMouseEnter={(e) => { e.target.style.transform = 'translateY(-2px)'; e.target.style.boxShadow = '0 6px 20px rgba(243, 156, 18, 0.4)'; }}
+                        onMouseLeave={(e) => { e.target.style.transform = 'translateY(0)'; e.target.style.boxShadow = '0 4px 10px rgba(243, 156, 18, 0.3)'; }}
                     >
                         Cart ({cart.length})
                     </button>
@@ -287,7 +289,9 @@ function Customer() {
                     {/* Logout button */}
                     <button
                         onClick={handleLogout}
-                        style={{ float: 'right', marginLeft: '10px', padding: '8px 12px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                        style={{ float: 'right', marginLeft: '10px', padding: '10px 20px', background: 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer', fontWeight: '600', transition: 'all 0.3s ease', boxShadow: '0 4px 10px rgba(231, 76, 60, 0.3)' }}
+                        onMouseEnter={(e) => { e.target.style.transform = 'translateY(-2px)'; e.target.style.boxShadow = '0 6px 20px rgba(231, 76, 60, 0.4)'; }}
+                        onMouseLeave={(e) => { e.target.style.transform = 'translateY(0)'; e.target.style.boxShadow = '0 4px 10px rgba(231, 76, 60, 0.3)'; }}
                     >
                         Logout
                     </button>
@@ -298,13 +302,13 @@ function Customer() {
                 <div className="cart-overlay">
                     <div className="cart-modal">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <h2>Shopping Cart</h2>
-                            <button onClick={placeOrder} disabled={!cart || cart.length === 0}>
+                            <h2 style={{ color: '#ecf0f1', margin: 0 }}>Shopping Cart</h2>
+                            <button className="button" onClick={placeOrder} disabled={!cart || cart.length === 0} style={{ margin: 0 }}>
                                 Place Order
                             </button>
                         </div>
                         {cart.length === 0 ? (
-                            <p>Your cart is empty</p>
+                            <p style={{ color: '#95a5a6', textAlign: 'center', padding: '20px', fontStyle: 'italic' }}>Your cart is empty</p>
                         ) : (
                             <>
                                 {cart.map((item, index) => (
@@ -312,10 +316,10 @@ function Customer() {
                                         <img src={item.image} alt={item.name} className="cart-item-image" />
                                         <div className="cart-item-details">
                                             <span className="cart-item-name">{item.name}</span>
-                                            <span>Qty: {item.quantity}</span>
-                                            <span>₹{(item.price * item.quantity).toFixed(2)}</span>
+                                            <span style={{ color: '#bdc3c7' }}>Qty: {item.quantity}</span>
+                                            <span style={{ color: '#f39c12', fontWeight: '700' }}>₹{(item.price * item.quantity).toFixed(2)}</span>
                                         </div>
-                                        <button onClick={() => removeFromCart(item.name)}>Remove</button>
+                                        <button className="button" style={{ margin: 0 }} onClick={() => removeFromCart(item.name)}>Remove</button>
                                     </div>
                                 ))}
                                 <div className="cart-total">
@@ -323,7 +327,7 @@ function Customer() {
                                 </div>
                             </>
                         )}
-                        <button onClick={() => setShowCart(false)}>Close</button>
+                        <button className="button" style={{ marginTop: '15px', width: '100%' }} onClick={() => setShowCart(false)}>Close</button>
                     </div>
                 </div>
             )}
@@ -331,21 +335,21 @@ function Customer() {
             {showDetails && (
                 <div className="cart-overlay">
                     <div className="cart-modal">
-                        <h2 style={{ color: 'white' }}>Product Details</h2>
+                        <h2 style={{ color: '#ecf0f1' }}>Product Details</h2>
                         {selectedProduct && (
                             <div className="product-details">
-                                <img src={selectedProduct.image} alt={selectedProduct.name} style={{width: '200px', height: '200px', objectFit: 'cover', borderRadius: '10px'}} />
-                                <h3 style={{ color: 'white' }}>{selectedProduct.name}</h3>
-                                <p style={{ color: 'white' }}>Product ID: {selectedProduct.id}</p>
-                                <p style={{ color: 'white' }}>Price: ₹{selectedProduct.price.toFixed(2)}</p>
+                                <img src={selectedProduct.image} alt={selectedProduct.name} style={{width: '220px', height: '220px', objectFit: 'cover', borderRadius: '12px', boxShadow: '0 8px 20px rgba(243, 156, 18, 0.3)', border: '3px solid #f39c12'}} />
+                                <h3 style={{ color: '#ecf0f1' }}>{selectedProduct.name}</h3>
+                                <p style={{ color: '#bdc3c7' }}>Product ID: {selectedProduct.id}</p>
+                                <p style={{ color: '#f39c12', fontSize: '1.3em', fontWeight: '700' }}>₹{selectedProduct.price.toFixed(2)}</p>
 
                                 {/* language selector for description */}
-								<div style={{ marginTop: 10 }}>
-									<label style={{ color: 'white', marginRight: 8 }}>Show description in:</label>
+								<div style={{ marginTop: 15, background: 'rgba(255, 255, 255, 0.05)', padding: 15, borderRadius: 10 }}>
+									<label style={{ color: '#ecf0f1', marginRight: 12, fontWeight: '600' }}>Show description in:</label>
 									<select
 										value={detailLang}
 										onChange={(e) => setDetailLang(e.target.value)}
-										style={{ padding: '6px', borderRadius: 6 }}
+										style={{ padding: '8px 12px', borderRadius: 8, border: '2px solid #f39c12', background: '#ecf0f1', color: '#2c3e50', fontWeight: '600', cursor: 'pointer' }}
 									>
 										<option value="original">Original</option>
 										<option value="en">English</option>
@@ -361,33 +365,33 @@ function Customer() {
 								</div>
 
 								{/* translated description display */}
-								<div style={{ marginTop: 12, color: 'white', whiteSpace: 'pre-wrap' }}>
+								<div style={{ marginTop: 15, color: '#bdc3c7', whiteSpace: 'pre-wrap', background: 'rgba(255, 255, 255, 0.05)', padding: 15, borderRadius: 10, maxHeight: '150px', overflowY: 'auto', textAlign: 'left' }}>
 									{translatedDescription || selectedProduct.description || 'No description'}
 								</div>
 
 								{/* show existing feedbacks for this product */}
 								{selectedProduct && (
-									<div style={{ marginTop: 12 }}>
-										<h4 style={{ color: 'white' }}>Feedback</h4>
+									<div style={{ marginTop: 15, borderTop: '2px solid #f39c12', paddingTop: 15 }}>
+										<h4 style={{ color: '#ecf0f1', marginBottom: 12 }}>Customer Feedback</h4>
 										{(productFeedbacks.filter(f => String(f.productId) === String(selectedProduct.id))).length === 0 ? (
-											<p style={{ color: 'white' }}>No feedback yet.</p>
+											<p style={{ color: '#95a5a6', fontStyle: 'italic' }}>No feedback yet.</p>
 										) : (
-											<ul style={{ maxHeight: 220, overflow: 'auto', paddingLeft: 12 }}>
+											<ul style={{ maxHeight: 220, overflow: 'auto', paddingLeft: 0, margin: 0, listStyle: 'none' }}>
 												{productFeedbacks.filter(f => String(f.productId) === String(selectedProduct.id)).map(f => (
-													<li key={f.id} style={{ marginBottom: 8, color: 'white', background: 'rgba(0,0,0,0.15)', padding: 8, borderRadius: 6 }}>
-														<div style={{ fontWeight: 700 }}>{f.authorName} <span style={{ fontWeight: 400, fontSize: 12, marginLeft: 8 }}>{new Date(f.date).toLocaleString()}</span></div>
-														<div style={{ marginTop: 6 }}>{f.text}</div>
+													<li key={f.id} style={{ marginBottom: 10, color: '#ecf0f1', background: 'rgba(243, 156, 18, 0.1)', padding: 12, borderRadius: 8, borderLeft: '4px solid #f39c12' }}>
+														<div style={{ fontWeight: 700, color: '#f39c12' }}>{f.authorName} <span style={{ fontWeight: 400, fontSize: 12, marginLeft: 8, color: '#95a5a6' }}>{new Date(f.date).toLocaleString()}</span></div>
+														<div style={{ marginTop: 8, color: '#bdc3c7' }}>{f.text}</div>
 													</li>
 												))}
 											</ul>
 										)}
 										{/* quick add feedback from details */}
-										<button className="button" style={{ marginTop: 8 }} onClick={() => openFeedbackModal(selectedProduct)}>Write Feedback</button>
+										<button className="button" style={{ marginTop: 12 }} onClick={() => openFeedbackModal(selectedProduct)}>Write Feedback</button>
 									</div>
 								)}
                             </div>
                         )}
-                        <button onClick={() => setShowDetails(false)}>Close</button>
+                        <button className="button" style={{ marginTop: 20, width: '100%' }} onClick={() => setShowDetails(false)}>Close</button>
                     </div>
                 </div>
             )}
@@ -395,11 +399,11 @@ function Customer() {
             {showFeedbackModal && feedbackProduct && (
 				<div className="cart-overlay">
 					<div className="cart-modal">
-						<h2 style={{ color: 'white' }}>Feedback — {feedbackProduct.name}</h2>
-						<textarea value={feedbackText} onChange={(e)=>setFeedbackText(e.target.value)} rows={6} style={{ width: '100%', padding: 10 }} />
-						<div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-							<button onClick={() => saveFeedback(feedbackProduct.id, feedbackText)}>Submit</button>
-							<button onClick={() => setShowFeedbackModal(false)}>Cancel</button>
+						<h2 style={{ color: '#ecf0f1' }}>Feedback — {feedbackProduct.name}</h2>
+						<textarea value={feedbackText} onChange={(e)=>setFeedbackText(e.target.value)} rows={6} placeholder="Share your experience with this product..." style={{ width: '100%', padding: 12, borderRadius: 8, border: '2px solid #f39c12', fontFamily: 'inherit', fontSize: 14, background: '#f5f5f5', color: '#2c3e50', boxSizing: 'border-box' }} />
+						<div style={{ display: 'flex', gap: 12, marginTop: 15 }}>
+							<button className="button" style={{ flex: 1 }} onClick={() => saveFeedback(feedbackProduct.id, feedbackText)}>Submit</button>
+							<button className="button" style={{ flex: 1, background: 'linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%)', boxShadow: '0 4px 10px rgba(149, 165, 166, 0.3)' }} onClick={() => setShowFeedbackModal(false)}>Cancel</button>
 						</div>
 					</div>
 				</div>
@@ -410,12 +414,12 @@ function Customer() {
             </div>
             <div>
             <section id="home">
-                <h2 style={{ color: 'black' }}>Craftora India's Premier Artisan Marketplace</h2>
-                <p>Discover a variety of products at great prices. Shop now and enjoy amazing deals!</p>
+                <h2 style={{ color: '#2c3e50' }}>Craftora: India's Premier Artisan Marketplace</h2>
+                <p style={{ color: '#555', fontSize: '1.05em' }}>Discover a carefully curated collection of authentic handcrafted products. Support artisans and preserve traditional art forms while enjoying exceptional quality and craftsmanship.</p>
             </section>
             </div>
             <section id="products">
-                <h2 style={{ color: 'black' }}>Featured Products</h2>
+                <h2 style={{ color: '#2c3e50' }}>Featured Products</h2>
                 
                 <div className="search-bar">
                     <input
@@ -431,16 +435,16 @@ function Customer() {
                     <div className="container">
                         {filteredProducts.map(product => (
                             <div key={product.id} className="product">
-                                <img src={product.imageUrl} alt={product.name} style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 8, display: 'block', margin: '0 auto 8px' }} />
+                                <img src={product.imageUrl} alt={product.name} style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 8, display: 'block', margin: '0 auto 12px' }} />
                                 <h3>{product.name}</h3>
-                                <p>Price: ₹{product.price.toFixed(2)}</p>
+                                <p style={{ color: '#f39c12', fontSize: '1.1em', fontWeight: '600' }}>₹{product.price.toFixed(2)}</p>
                                 <button className="button" onClick={() => handleShowDetails(product.name, product.imageUrl, product.price, product.description, product.id)}>Details</button>
                                 <button className="button" onClick={() => handleAddToCart(product.name, product.price, product.imageUrl)}>Add to Cart</button>
                                 {/* Add Feedback button */}
                                 <button className="button" onClick={() => openFeedbackModal(product)}>Feedback</button>
                             </div>
                         ))}
-                        {filteredProducts.length === 0 && <p style={{textAlign: 'center', color: '#666'}}>No products found matching "{searchTerm}".</p>}
+                        {filteredProducts.length === 0 && <p style={{textAlign: 'center', color: '#95a5a6', fontStyle: 'italic', padding: '30px'}}>No products found matching "{searchTerm}".</p>}
                     </div>
                 ) : (
                     <>
@@ -449,9 +453,9 @@ function Customer() {
                             <div className="container">
                                 {adminProducts.map(product => (
                                     <div key={product.id} className="product">
-                                        <img src={product.imageUrl} alt={product.name} style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 8, display: 'block', margin: '0 auto 8px' }} />
+                                        <img src={product.imageUrl} alt={product.name} style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 8, display: 'block', margin: '0 auto 12px' }} />
                                         <h3>{product.name}</h3>
-                                        <p>Price: ₹{product.price.toFixed(2)}</p>
+                                        <p style={{ color: '#f39c12', fontSize: '1.1em', fontWeight: '600' }}>₹{product.price.toFixed(2)}</p>
                                         <button className="button" onClick={() => handleShowDetails(product.name, product.imageUrl, product.price, product.description, product.id)}>Details</button>
                                         <button className="button" onClick={() => handleAddToCart(product.name, product.price, product.imageUrl)}>Add to Cart</button>
                                         {/* Add Feedback button */}
@@ -460,7 +464,7 @@ function Customer() {
                                 ))}
                             </div>
                         ) : (
-                            <p style={{textAlign: 'center', color: '#666', fontSize: '18px', marginTop: '40px'}}>No products available. Admin can add products to display here.</p>
+                            <p style={{textAlign: 'center', color: '#95a5a6', fontSize: '18px', marginTop: '40px', fontStyle: 'italic'}}>No products available. Admin can add products to display here.</p>
                         )}
                     </>
                 )}
@@ -468,37 +472,43 @@ function Customer() {
             </section>
 
             <section id="about">
-                <h2 style={{ color: 'black' }}>About Us</h2>
-                <p>We are a leading online shopping platform dedicated to providing our customers with the best products at unbeatable prices. Our mission is to support artisans, promote their crafts and preserve traditional art forms.</p>
+                <h2 style={{ color: '#2c3e50' }}>About Us</h2>
+                <p style={{ color: '#555', fontSize: '1.05em', lineHeight: '1.8' }}>We are a leading online marketplace dedicated to supporting artisans and promoting traditional crafts. Our mission is to connect skilled craftspeople with customers who appreciate authentic, handcrafted products. By shopping with us, you help preserve cultural heritage and support local communities. Each product tells a story of tradition, passion, and exceptional craftsmanship.</p>
             </section>
 
             <section id="contact">
-                <h2 style={{ color: 'black' }}>Contact Us</h2>
-                <p>If you have any questions or need assistance, feel free to reach out to us:</p>
-                <p>Email: manikantasaikearthi@gmail.com</p>
-                <p>Phone: 9032646737</p>
+                <h2 style={{ color: '#2c3e50' }}>Contact Us</h2>
+                <p style={{ color: '#555' }}>If you have any questions or need assistance, feel free to reach out to us:</p>
+                <div style={{ background: 'linear-gradient(135deg, #f39c12 0%, #e67e22 100%)', padding: '20px', borderRadius: '10px', marginTop: '20px', color: 'white' }}>
+                    <p style={{ color: 'white', margin: '8px 0', fontSize: '1.05em' }}><strong>Email:</strong> manikantasaikearthi@gmail.com</p>
+                    <p style={{ color: 'white', margin: '8px 0', fontSize: '1.05em' }}><strong>Phone:</strong> 9032646737</p>
+                </div>
             </section>
 
             <section id="cart">
-                <h2>Your Cart</h2>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    
-                    <button onClick={placeOrder} disabled={!cart || cart.length === 0}>
-                        Place Order
+                <h2>Your Shopping Cart</h2>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                    <p style={{ color: '#555', margin: 0 }}>Total Items: <strong style={{ color: '#f39c12' }}>{cart.length}</strong></p>
+                    <button className="button" onClick={placeOrder} disabled={!cart || cart.length === 0}>
+                        Place Order Now
                     </button>
                 </div>
 
                 {(!cart || cart.length === 0) ? (
-                    <p>Cart is empty</p>
+                    <div style={{ textAlign: 'center', padding: '40px', background: '#f8f9fa', borderRadius: '10px' }}>
+                        <p style={{ color: '#95a5a6', fontSize: '1.1em' }}>Your cart is currently empty. Explore our featured products above!</p>
+                    </div>
                 ) : (
-                    <ul>
+                    <div style={{ display: 'grid', gap: '12px' }}>
                         {cart.map((item, idx) => (
-                            <li key={idx}>
-                                {item.name || item.title} — qty: {item.quantity || 1}
-                                {/* brief display; adjust to match your cart item shape */}
-                            </li>
+                            <div key={idx} style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%)', padding: '15px', borderRadius: '10px', borderLeft: '4px solid #f39c12', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div style={{ flex: 1 }}>
+                                    <p style={{ color: '#2c3e50', fontWeight: '600', margin: '0 0 5px 0' }}>{item.name || item.title}</p>
+                                    <p style={{ color: '#7f8c8d', margin: 0 }}>Quantity: <strong>{item.quantity || 1}</strong> | Price: <strong style={{ color: '#f39c12' }}>₹{(item.price * (item.quantity || 1)).toFixed(2)}</strong></p>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 )}
             </section>
 

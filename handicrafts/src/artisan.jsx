@@ -640,12 +640,13 @@ function Artisan() {
 			<header className="admin-header">
 				<h1>Artisan Panel - Product Management</h1>
 				<nav>
-					<button onClick={() => setShowProductList(false)}>Add Product</button>
-					<button onClick={loadExistingProducts}>View Products</button>
+					<button className="button" onClick={() => setShowProductList(false)}>Add Product</button>
+					<button className="button" onClick={loadExistingProducts}>View Products</button>
 					{/* Logout button */}
 					<button
 						onClick={handleLogout}
-						style={{ marginLeft: '12px', padding: '8px 12px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+						className="button"
+						style={{ marginLeft: '8px' }}
 					>
 						Logout
 					</button>

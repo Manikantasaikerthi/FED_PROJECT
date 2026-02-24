@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 .consultant-container {
-	/* expand up to 90% of viewport width while keeping a max width for large screens */
-	width: 90vw;
+	width: 92vw;
 	max-width: 980px;
 	margin: 20px auto;
-	padding: 18px;
-	background: linear-gradient(180deg,#fbfdff,#f7fbff);
-	border-radius: 12px;
-	box-shadow: 0 18px 40px rgba(12,20,40,0.06);
-	color: #0f1724;
+	padding: 20px;
+	background: linear-gradient(180deg,#ffffff,#fbfbff);
+	border-radius: 14px;
+	box-shadow: 0 14px 40px rgba(10,20,40,0.06);
+	color: #1f2937;
 }
 
 /* small screens: leave a bit of side padding */
@@ -30,17 +29,18 @@
 }
 .consultant-header h1 {
 	margin: 0;
-	color: #2b6cb0;
+	color: #f39c12;
 	font-weight: 800;
 }
 .refresh {
-	background: linear-gradient(90deg,#4caf50,#2f8b36);
+	background: linear-gradient(135deg,#f39c12,#e67e22);
 	color: #fff;
 	border: none;
 	padding: 8px 12px;
-	border-radius: 10px;
+	border-radius: 12px;
 	cursor: pointer;
 	font-weight: 700;
+	box-shadow: 0 8px 22px rgba(243,156,18,0.14);
 }
 
 .consultant-empty {
@@ -61,13 +61,15 @@
 .pending-card {
 	display: flex;
 	gap: 12px;
-	background: #fff;
-	padding: 12px;
-	border-radius: 10px;
+	background: linear-gradient(180deg,#ffffff,#fbfbff);
+	padding: 14px;
+	border-radius: 12px;
 	align-items: center;
-	border: 1px solid rgba(10,20,40,0.03);
-	box-shadow: 0 10px 30px rgba(12,20,40,0.03);
+	border: 1px solid rgba(10,20,40,0.04);
+	box-shadow: 0 12px 36px rgba(12,20,40,0.06);
+	transition: transform .18s ease, box-shadow .18s ease;
 }
+.pending-card:hover { transform: translateY(-6px); box-shadow: 0 26px 60px rgba(12,20,40,0.09); }
 
 .pending-left img {
 	width: 140px;
@@ -98,12 +100,16 @@
 	cursor: pointer;
 }
 .pending-actions .approve {
-	background: linear-gradient(90deg,#72b9ff,#3a9bff);
+	background: linear-gradient(135deg,#4fd17b,#2f8b36);
 	color: #fff;
+	border-radius: 10px;
+	padding: 8px 12px;
 }
 .pending-actions .reject {
-	background: linear-gradient(90deg,#ff7b7b,#e55353);
+	background: linear-gradient(135deg,#ff7b7b,#e55353);
 	color: #fff;
+	border-radius: 10px;
+	padding: 8px 12px;
 }
 
 @media (max-width:720px){

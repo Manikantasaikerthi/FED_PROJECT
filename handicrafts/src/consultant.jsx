@@ -133,12 +133,7 @@ export default function Consultant() {
 				<header className="consultant-header" style={{color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
 					<h1>Consultant Panel</h1>
 					<nav>
-						<button
-							onClick={handleLogout}
-							style={{ marginLeft: '12px', padding: '8px 12px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
-						>
-							Logout
-						</button>
+						<button onClick={handleLogout} className="button" style={{ marginLeft: 12 }}>Logout</button>
 					</nav>
 				</header>
 				<div className="consultant-empty">No pending products to review.</div>
@@ -154,12 +149,7 @@ export default function Consultant() {
 				<h1>Consultant Panel — Pending Products</h1>
 				<button className="refresh" onClick={loadPending}>Refresh</button>
 				<nav>
-					<button
-						onClick={handleLogout}
-						style={{ marginLeft: '12px', padding: '8px 12px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
-					>
-						Logout
-					</button>
+					<button onClick={handleLogout} className="button" style={{ marginLeft: 12 }}>Logout</button>
 				</nav>
 			</header>
 

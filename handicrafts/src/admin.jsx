@@ -230,8 +230,8 @@ export default function AdminDashboard() {
 			<header className="admin-header">
 				<h1>Admin Panel - Product Management</h1>
 				<div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-					<button className="btn refresh-btn" onClick={loadOrders}>Refresh</button>
-					<button onClick={handleLogout} className="nav-btn logout">Logout</button>
+					<button className="button btn refresh-btn" onClick={loadOrders}>Refresh</button>
+					<button onClick={handleLogout} className="button nav-btn logout">Logout</button>
 				</div>
 			</header>
 
